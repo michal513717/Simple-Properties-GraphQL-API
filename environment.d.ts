@@ -3,6 +3,7 @@ declare global {
         interface ProcessEnv {
             MONGODB_URI: string;
             MONGODB_DB_NAME: string;
+            WEATHERSTACK_API_KEY: string;
         }
     }
 }

@@ -8,7 +8,13 @@
         "build": "turbo build"
     },
     "dependencies": {
+        "@graphql-tools/load-files": "^7.0.0",
+        "apollo-server": "^3.13.0",
+        "axios": "^1.7.9",
         "dotenv": "^16.0.3",
+        "graphql-import": "^1.0.2",
+        "graphql-tools": "^9.0.11",
+        "graphql-yoga": "^5.10.9",
         "log4js": "^6.9.1",
         "lowdb": "^7.0.1",
         "mongoose": "^8.9.3",
