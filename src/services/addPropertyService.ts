@@ -1,18 +1,13 @@
 import { PropertyRepository } from "../repositories/propertyRepository";
 import { PropertyDocument } from "../models/mongo.schema";
+import { AddPropertyInput } from "../models/common.models";
 import axios from "axios";
 
-interface AddPropertyInput {
-    city: string;
-    street: string;
-    state: string;
-    zipCode: string;
-}
 
 export class AddPropertyService {
 
-    static async execute(input: AddPropertyInput): Promise<PropertyDocument> {
-        const { city, street, state, zipCode } = input;
+    static async execute(input: AddPropertyInput): Promise<any> {
+        const { city, street, state, zipCode, lat, long } = input;
 
         if (!city || !street || !state || !zipCode) {
             throw new Error("All property fields (city, street, state, zipCode) are required.");
@@ -20,14 +15,14 @@ export class AddPropertyService {
 
         const weatherData = await this.fetchWeatherData(city, state);
 
-        return await PropertyRepository.create({
+        await PropertyRepository.create({
             city,
             street,
             state,
             zipCode,
             weatherData,
-            lat: weatherData.latitude,
-            long: weatherData.longitude,
+            lat,
+            long
         });
     }
 

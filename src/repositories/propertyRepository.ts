@@ -1,10 +1,10 @@
-import { PropertyDocument, PropertyModel } from "../models/mongo.schema";
+import mongoose from "mongoose";
+import { Property, PropertyDocument, PropertyModel, PropertySchema } from "../models/mongo.schema";
 
 export class PropertyRepository {
 
     static async create(data: Partial<PropertyDocument>): Promise<PropertyDocument> {
-        const property = new PropertyModel(data);
-        return await property.save();
+        return await PropertyModel.create(data);
     }
 
     static async findAll(

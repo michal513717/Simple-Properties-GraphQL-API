@@ -50,7 +50,6 @@ export const propertyTypeDefinitions = /* GraphQL */ `
     }
 
     type Query {
-        hello: String!
         getProperties: [Property]
         getPropertyById(id: ID!): Property
     }

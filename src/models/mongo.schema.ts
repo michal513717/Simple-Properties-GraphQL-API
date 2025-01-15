@@ -28,7 +28,7 @@ export type WeatherData = {
     feelslike: number;
     uv_index: number;
     visibility: number;
-    is_day: boolean;
+    is_day: string;
 };
 
 export type PropertyDocument = Property & Document;
