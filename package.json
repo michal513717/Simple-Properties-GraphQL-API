@@ -16,10 +16,8 @@
         "graphql-tools": "^9.0.11",
         "graphql-yoga": "^5.10.9",
         "log4js": "^6.9.1",
-        "lowdb": "^7.0.1",
         "mongoose": "^8.9.3",
-        "ts-node-dev": "^2.0.0",
-        "uuid": "^11.0.3"
+        "ts-node-dev": "^2.0.0"
     },
     "devDependencies": {
         "@babel/preset-typescript": "^7.21.5",
