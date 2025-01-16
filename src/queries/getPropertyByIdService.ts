@@ -3,7 +3,7 @@ import { PropertyDocument } from "../models/mongo.schema";
 
 export class GetPropertyByIdService {
 
-    async execute(id: string): Promise<PropertyDocument> {
+    static async execute(id: string): Promise<PropertyDocument> {
         //TODO add custom Errors
         if (!id) {
             throw new Error("Property ID is required.");

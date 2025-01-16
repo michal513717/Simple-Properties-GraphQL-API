@@ -9,12 +9,20 @@ export interface AddPropertyInput {
     long: number;
 }
 
+export type QueryWithFilter = {
+    field: string, 
+    value: string, 
+    sortBy?: string;
+    sortOrder?: "asc" | "desc";
+}
+
 export type PropertyQueryResolvers = {
-    getProperties: (_: undefined, args: {
-        filters: Partial<PropertyDocument>
-        sortKey: string
-    }) => Promise<Property[]>;
     getPropertyById: (_: undefined, args: { id: string }) => Promise<PropertyDocument>;
+    getAllProperties: () => Promise<Property[]>;
+    getPropertiesWithFilter: (
+        _: undefined, 
+        args: QueryWithFilter
+    ) => Promise<Property[]>;
 };
 
 export type PropertyMutationResolvers = {

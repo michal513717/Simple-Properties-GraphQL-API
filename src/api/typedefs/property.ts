@@ -50,7 +50,13 @@ export const propertyTypeDefinitions = /* GraphQL */ `
     }
 
     type Query {
-        getProperties: [Property]
         getPropertyById(id: ID!): Property
+        getAllProperties: [Property]!
+        getPropertiesWithFilter(
+            field: String!
+            value: String!
+            sortBy: String
+            sortOrder: String
+        ): [Property!]!
     }
 `

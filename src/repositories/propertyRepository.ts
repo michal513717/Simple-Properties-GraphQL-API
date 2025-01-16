@@ -7,12 +7,14 @@ export class PropertyRepository {
         return await PropertyModel.create(data);
     }
 
-    static async findAll(
-        filters: Partial<PropertyDocument> = {},
-        sortKey: string = "createdAt"
-    ): Promise<PropertyDocument[]> {
-        //@ts-ignore
-        return await PropertyModel.find(filters).sort({ [sortKey]: 1 });
+    static async findAll(): Promise<PropertyDocument[]> {
+        return await PropertyModel.find();
+    }
+
+    static async findWithFilter(field: string, value: string, sortBy: string = "createdAt", sortOrder: "asc" | "desc" = "desc"): Promise<PropertyDocument[]> {
+        const filter: any = {};
+        filter[field] = value;
+        return await PropertyModel.find(filter).sort({ [sortBy]: sortOrder === "asc" ? 1 : -1 });
     }
 
     static async findById(id: string): Promise<PropertyDocument | null> {

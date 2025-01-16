@@ -1,17 +1,29 @@
 import { PropertyQueryResolvers } from "../../../models/common.models";
-import { GetPropertiesService } from "../../../queries/getPropertiesService";
+import { GetAllPropertiesService } from "../../../queries/getAllPropertiesService";
+import { GetPropertiesWithFilterService } from "../../../queries/getPropertiesWithFilter";
 import { GetPropertyByIdService } from "../../../queries/getPropertyByIdService";
 
 export const propertyQueryResolvers: PropertyQueryResolvers = {
-    getProperties: async (_, args) => {
-        const service = new GetPropertiesService();
-        const filters = args.filters || {};
-        const sortKey = args.sortKey || "";
-        return await service.execute(filters, sortKey);
-    },
     getPropertyById: async (_, args) => {
-        const service = new GetPropertyByIdService();
-        return await service.execute(args.id);
+        return await GetPropertyByIdService.execute(args.id);
+    },
+
+    getAllProperties: async () => {
+        try {
+            return await GetAllPropertiesService.execute();
+        } catch (error) {
+            console.error("Error fetching all properties:", error);
+            throw new Error("Failed to fetch properties.");
+        }
+    },
+
+    getPropertiesWithFilter: async (_, args) => {
+        try {
+            return await GetPropertiesWithFilterService.execute(args);
+        } catch (error) {
+            console.error("Error fetching filtered properties:", error);
+            throw new Error("Failed to fetch properties with filters.");
+        }
     },
 }
 
