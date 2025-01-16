@@ -28,51 +28,27 @@ export class AddPropertyService {
 
     static async fetchWeatherData(city: string, state: string): Promise<any> {
         try {
-            //TMP
-            // const response = await axios.get(`http://api.weatherstack.com/current`, {
-            //     params: {
-            //         access_key: process.env.WEATHERSTACK_API_KEY,
-            //         query: `${city}, ${state}`,
-            //     },
-            // });
+            const response = await axios.get(`http://api.weatherstack.com/current`, {
+                params: {
+                    access_key: process.env.WEATHERSTACK_API_KEY,
+                    query: `${city}, ${state}`,
+                },
+            });
 
-            // const data = response.data;
+            const data = response.data;
 
-            //TODO add custom Errors
-            // if (!data || !data.current) {
-            //     throw new Error("Unable to fetch weather data.");
-            // }
-
-            // return {
-            //     temperature: data.current.temperature,
-            //     weather_descriptions: data.current.weather_descriptions,
-            //     weather_icons: data.current.weather_icons,
-            //     humidity: data.current.humidity,
-            //     latitude: data.location.lat,
-            //     longitude: data.location.lon,
-            // };
-            return {
-                "observation_time": "03:52 PM",
-                "temperature": 5,
-                "weather_code": 113,
-                "weather_icons": [
-                    "https://cdn.worldweatheronline.com/images/wsymbols01_png_64/wsymbol_0001_sunny.png"
-                ],
-                "weather_descriptions": [
-                    "Sunny"
-                ],
-                "wind_speed": 13,
-                "wind_degree": 208,
-                "wind_dir": "SSW",
-                "pressure": 1038,
-                "precip": 0,
-                "humidity": 75,
-                "cloudcover": 0,
-                "feelslike": 2,
-                "uv_index": 0,
-                "visibility": 10,
-                "is_day": "yes"
+            if (!data || !data.current) {
+                throw new Error("Unable to fetch weather data.");
             }
+
+            return {
+                temperature: data.current.temperature,
+                weather_descriptions: data.current.weather_descriptions,
+                weather_icons: data.current.weather_icons,
+                humidity: data.current.humidity,
+                latitude: data.location.lat,
+                longitude: data.location.lon,
+            };
         } catch (error) {
             throw new Error("Error fetching weather data from Weatherstack.");
         }

@@ -7,7 +7,8 @@ export const configureLogger = () => {
             default: { appenders: ["out", "file"], level: "debug" },
             Main: { appenders: ["out", "file"], level: "info" },
             Http: { appenders: ["out", "file"], level: "info" },
-            Database: { appenders: ["out", "file"], level: "debug" }
+            Database: { appenders: ["out", "file"], level: "debug" },
+            resolvers: { appenders: ["out", "file"], level: "debug" },
         },
     });
 }

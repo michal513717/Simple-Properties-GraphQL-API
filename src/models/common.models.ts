@@ -7,14 +7,25 @@ export interface AddPropertyInput {
     zipCode: string;
     lat: number;
     long: number;
-}
+};
 
 export type QueryWithFilter = {
     field: string, 
     value: string, 
     sortBy?: string;
     sortOrder?: "asc" | "desc";
-}
+};
+
+export enum ResponseStatus {
+    FAILED = "FAILED",
+    SUCCESS = "SUCCESS"
+};
+export enum ERROR_CODES {
+    INTERNAL_SERVER_ERROR = "INTERNAL_SERVER_ERROR",
+    PROPERTY_NOT_FOUND = "PROPERTY_NOT_FOUND",
+    INSUFFICIENT_STOCK = "INSUFFICIENT_STOCK",
+    VALIDATION_ERROR = "VALIDATION_ERROR"
+};
 
 export type PropertyQueryResolvers = {
     getPropertyById: (_: undefined, args: { id: string }) => Promise<PropertyDocument>;
